@@ -34,6 +34,7 @@ notebooks/
   glm_ocr_greedy_vs_beam4_validation.ipynb
   glm_ocr_current_checkpoint_kenlm_validation.ipynb
   glm_ocr_checkpoint642_higher_resolution_validation.ipynb
+  glm_qwen_4b_7b_benchmark.ipynb
 src/
   barbados_ocr_augmentation.py
   transcription_metrics.py
@@ -93,6 +94,9 @@ Run the notebooks in this order:
 2. `notebooks/glm_ocr_greedy_vs_beam4_validation.ipynb`
 3. `notebooks/glm_ocr_current_checkpoint_kenlm_validation.ipynb` (optional)
 4. `notebooks/glm_ocr_checkpoint642_higher_resolution_validation.ipynb` (optional)
+5. `notebooks/glm_qwen_4b_7b_benchmark.ipynb` (optional three-model benchmark)
+
+The benchmark notebook downloads commit-pinned Qwen3-VL-4B-Instruct and Qwen2.5-VL-7B-Instruct snapshots, then compares both zero-shot baselines with the untouched base GLM-OCR model on the exact saved 400-image validation split. Install its additional 4-bit inference dependencies with `requirements-benchmark.txt`. It caches every prediction and loads the models sequentially.
 
 Training is not started by setup or preview cells. The two training cells in the curriculum notebook are explicitly separated. Run identities guard against accidentally resuming incompatible settings; use a new `run_name` for a genuinely different experiment.
 
@@ -115,4 +119,3 @@ GLM-OCR code is Apache-2.0 and its model weights are MIT-licensed; consult the [
 ## Responsible publication
 
 Before any push, inspect `git status` and confirm that no dataset rows, manuscript images, checkpoints, predictions, submissions, credentials, or notebook outputs are staged. If such a file was ever committed, adding it to `.gitignore` is not sufficient; remove it from Git history before publishing.
-
