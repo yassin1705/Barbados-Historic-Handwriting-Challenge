@@ -1,0 +1,3 @@
+-r requirements.txt
+kenlm>=0.3.0
+

@@ -1,0 +1,65 @@
+# Competition data (the Zindi data terms do not allow redistribution)
+/resources/*
+!/resources/.gitkeep
+
+# Downloaded base models and trained weights
+/model/
+/models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Training, evaluation, prediction, and submission artifacts
+/training_outputs/
+/outputs/
+/runs/
+/checkpoints/
+submission*.csv
+predictions*.csv
+*.arpa
+*.binary
+
+# Local third-party checkouts and native builds
+/third_party/
+/.kenlm_src/
+/.kenlm_wsl_build/
+
+# Working notebooks are retained locally; publish only sanitized copies in notebooks/
+/*.ipynb
+.ipynb_checkpoints/
+
+# Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+
+# Editors, operating systems, and downloaded-file metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+
+# Build and packaging outputs
+build/
+dist/
+*.egg-info/
+
