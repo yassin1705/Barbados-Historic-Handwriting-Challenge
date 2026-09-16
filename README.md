@@ -30,11 +30,12 @@ The newer Stage 2-from-best-Stage-1 run selected checkpoint 770 at epoch 0.30 wi
 
 ```text
 notebooks/
-  glm_ocr_from_base_curriculum.ipynb
-  glm_ocr_greedy_vs_beam4_validation.ipynb
-  glm_ocr_current_checkpoint_kenlm_validation.ipynb
-  glm_ocr_checkpoint642_higher_resolution_validation.ipynb
-  glm_qwen_4b_7b_benchmark.ipynb
+  glm_finetuning.ipynb
+  glm_greedy_vs_beam4.ipynb
+  glm_kenlm_decoding.ipynb
+  glm_higher_resolution.ipynb
+  base_models_benchmark.ipynb
+  qwen3_vl_4b_finetuning.ipynb
 src/
   barbados_ocr_augmentation.py
   transcription_metrics.py
@@ -90,13 +91,16 @@ jupyter lab
 
 Run the notebooks in this order:
 
-1. `notebooks/glm_ocr_from_base_curriculum.ipynb`
-2. `notebooks/glm_ocr_greedy_vs_beam4_validation.ipynb`
-3. `notebooks/glm_ocr_current_checkpoint_kenlm_validation.ipynb` (optional)
-4. `notebooks/glm_ocr_checkpoint642_higher_resolution_validation.ipynb` (optional)
-5. `notebooks/glm_qwen_4b_7b_benchmark.ipynb` (optional three-model benchmark)
+1. `notebooks/glm_finetuning.ipynb`
+2. `notebooks/glm_greedy_vs_beam4.ipynb`
+3. `notebooks/glm_kenlm_decoding.ipynb` (optional)
+4. `notebooks/glm_higher_resolution.ipynb` (optional)
+5. `notebooks/base_models_benchmark.ipynb` (optional three-model benchmark)
+6. `notebooks/qwen3_vl_4b_finetuning.ipynb` (independent Qwen curriculum run)
 
 The benchmark notebook downloads commit-pinned Qwen3-VL-4B-Instruct and Qwen2.5-VL-7B-Instruct snapshots, then compares both zero-shot baselines with the untouched base GLM-OCR model on the exact saved 400-image validation split. Install its additional 4-bit inference dependencies with `requirements-benchmark.txt`. It caches every prediction and loads the models sequentially.
+
+The Qwen curriculum notebook uses seed 1705 and its own stratified 400-image holdout, so it is independent of both the GLM split and the earlier seed-42 Qwen experiment. It starts Stage 2 from the best Stage 1 checkpoint and saves Stage 2 every 0.1 epoch. Install its dependencies with `requirements-qwen-training.txt`.
 
 Training is not started by setup or preview cells. The two training cells in the curriculum notebook are explicitly separated. Run identities guard against accidentally resuming incompatible settings; use a new `run_name` for a genuinely different experiment.
 
